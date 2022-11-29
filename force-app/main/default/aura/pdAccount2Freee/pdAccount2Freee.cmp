@@ -1,0 +1,29 @@
+<aura:component controller="pdAccount2Freee"
+    implements="force:lightningQuickActionWithoutHeader,force:hasRecordId">
+
+    <aura:attribute name="account" type="Account" />
+    <aura:attribute name="isProgress" type="Boolean" default="false" />
+    <aura:attribute name="isDone" type="Boolean" default="false" />
+    <aura:attribute name="isError" type="Boolean" default="false" />
+    <aura:attribute name="errorMessage" type="String" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doRegist}" />
+
+    <div class="slds-page-header" role="banner">
+        <h1 class="slds-page-header__title slds-m-right_small14
+            slds-truncate slds-align-left">freee取引先連携</h1>
+    </div>
+    <div class="slds-container">
+        <aura:renderIf isTrue="{!v.isProgress}">
+            <lightning:spinner alternativeText="Progress" size="medium" />
+        </aura:renderIf>
+        <aura:renderIf isTrue="{!v.isDone}">
+            <lightning:icon iconName="utility:check" size="large" />
+            <p>連携が完了しました</p>
+        </aura:renderIf>
+        <aura:renderIf isTrue="{!v.isError}">
+            <lightning:icon iconName="utility:error" variant="error" size="large" />
+            <p style="white-space: pre;">{!v.errorMessage}</p>
+        </aura:renderIf>
+    </div>
+</aura:component>
